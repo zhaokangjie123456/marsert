@@ -1,0 +1,45 @@
+{
+    "name": "guanguans/yii-pay",
+    "keywords": [
+        "pay",
+        "alipay",
+        "wechat"
+    ],
+    "description": "适配于 Yii 的 alipay 和 wechat 的支付扩展包",
+    "support": {
+        "issues": "https://github.com/guanguans/yii-pay/issues",
+        "source": "https://github.com/guanguans/yii-pay"
+    },
+    "type": "library",
+    "minimum-stability": "dev",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "guanguans",
+            "email": "ityaozm@gmail.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "~2.0",
+        "yansongda/pay": "~2.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~7|~8"
+    },
+    "autoload": {
+        "psr-4": {
+            "Guanguans\\YiiPay\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Guanguans\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "./vendor/bin/phpunit --coverage-text --color=always --verbose"
+    },
+    "scripts-descriptions": {
+        "test": "Run the phpunit test."
+    }
+}
