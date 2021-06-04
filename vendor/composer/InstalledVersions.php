@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'ef06a2385eb92d8a2788cb4409ec485daf72c34d',
+    'reference' => '396dc6131aaba772c36eb9d89d351391ae1e38c8',
     'name' => 'yiisoft/yii2-app-advanced',
   ),
   'versions' => 
@@ -478,8 +478,8 @@ private static $installed = array (
     array (
       'provided' => 
       array (
-        0 => '1.0',
-        1 => '1.0.0',
+        0 => '1.0.0',
+        1 => '1.0',
       ),
     ),
     'ralouphie/getallheaders' => 
@@ -856,7 +856,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'ef06a2385eb92d8a2788cb4409ec485daf72c34d',
+      'reference' => '396dc6131aaba772c36eb9d89d351391ae1e38c8',
     ),
     'yiisoft/yii2-bootstrap' => 
     array (
@@ -902,6 +902,15 @@ private static $installed = array (
       array (
       ),
       'reference' => 'd879cb186361fbc6f71a2d994d580b5a071a5642',
+    ),
+    'yiisoft/yii2-redis' => 
+    array (
+      'pretty_version' => '2.0.15',
+      'version' => '2.0.15.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '2d11252cb9d04091469a08b5ebb1faedc11fb2b1',
     ),
     'yiisoft/yii2-swiftmailer' => 
     array (
