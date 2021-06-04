@@ -19,6 +19,10 @@ $main = [
                 'application/json' => 'yii\web\JsonParser',
             ]
         ],
+        'user'=>[
+            'identityClass'=>'api\modules\User',
+            'enableautoLogin'=>true,
+        ],
         'response' => [
             'class' => 'common\base\MyResponse',
             'on beforeSend' => function ($event) {
