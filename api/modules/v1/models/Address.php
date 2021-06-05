@@ -72,25 +72,10 @@ class Address extends \yii\db\ActiveRecord
     public function addre($params)
     {
         $openid = Wechat::openid($params['openid']);
+        var_dump($openid);
         //查询goods表中的限制字段判断如果小于就可以添加
-        //    $max = (new \yii\db\Query())->select('a.id,a.user_id,a.card_id,a.duihuan,b.styimage_id,max(b.lerver)')
-//            ->from('integral as a')
-//            ->innerJoin('card b','b.id=a.card_id')
-//            ->where('a.user_id=:user_id',['user_id'=>$openid->id])
-//            ->andWhere('b.lerver=5')
-//            ->groupBy('b.styimage_id')
-//            ->count();
-//        $config = (new \yii\db\Query())->select('address')
-//            ->from('config')
-//            ->one();
-//        if($max < $config){
-//            throw new ErrorException('目前没有资格添加收货地址');
-//        }
         $redis = yii::$app->redis;
         $id = $redis->get('ADDRE:'.$openid->id);
-//        if($id == 1){
-//            throw new ErrorException('已添加过地址信息');
-//        }
         if(empty($params['province'])){
             throw new ErrorException('省名称不能为空');
         }
@@ -216,53 +201,12 @@ class Address extends \yii\db\ActiveRecord
      * */
     public function show($params)
     {
-
-//        $sql="select * from user";
-//        $res=mysql_query($sql);
-//        $row=mysql_fetch_row($res);
         $row = (new \yii\db\Query())->select('*')
             ->from('wechat');
 
-        while($row) {
+        while ($row) {
             echo 'A row';
         }
-//        $transaction = yii::$app->db->beginTransaction();
-//        try {
-//            $id = (new \yii\db\Query())->select('id,name,user_id,province,city,district,address,mobile,is_default,create_at')
-//                ->from('address')
-//                ->where(['>','create_at','2020-10-10'])
-//                ->one();
-//            return $id;
-//            yii::$app->db->createCommand()->update(
-//                'address',
-//                [
-//                    'name'=>$id->name,
-//                    'user_id'=>'1',
-//                    'province'=>'1',
-//                    'city'=>'1',
-//                    'district'=>'1',
-//                    'address'=>'1',
-//                    'mobile'=>'1',
-//                    'is_default'=>'2',
-//                ],
-//                [
-//                    'id'=>$id->id
-//                ]
-//            )->execute();
-//            $transaction->commit();
-//            }catch (\Throwable $e){
-//                $transaction->rollBack();
-//                throw $e;
-//            }
-
-//        $pagesize = !empty($params['size'])?$params['size']:10;
-//        $openid = Wechat::openid($params['openid']);
-//        $model = (new \yii\db\Query())->select('id,user_id,province,city,district,address,mobile,name,is_default,create_at')
-//            ->from('address')
-//            ->where('user_id=:user_id',['user_id'=>$openid->id]);
-//        $pages = new Pagination(['totalCount'=>$model->count(),'pageSize'=>$pagesize]);
-//        $data = $model->offset($pages->offset)->limit($pages->limit)->all();
-//        return ['items'=>$data,'pages'=>$pages];
     }
     /**
      * 详情

@@ -3,7 +3,7 @@ $params = array_merge(
     require __DIR__ . '/../../common/config/params.php',
     require __DIR__ . '/../../common/config/params-local.php',
     require __DIR__ . '/params.php',
-    require __DIR__ . '/params-local.php'
+//    require __DIR__ . '/params-local.php'
 );
 
 $main = [
@@ -11,7 +11,6 @@ $main = [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'api\controllers',
     'bootstrap' => ['log'],
-    'modules' => [],
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-api',
@@ -40,7 +39,6 @@ $main = [
                 $response->format = common\base\MyResponse::FORMAT_JSON;
             },
         ],
-
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
@@ -107,7 +105,6 @@ $main = [
                     'pluralize' => false,
                     'extraPatterns' => [
                         'GET' => 'lock',//乐观锁
-//                        'GET' => 'details',//卡册详情
                         'GET'=>'show',//5000个号中抽取300个
                         'GET'=>'str',//5000个号中抽取300个
                     ]

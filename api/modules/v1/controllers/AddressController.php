@@ -15,6 +15,8 @@ class AddressController extends BaseController
      * */
     public function actionAddre()
     {
+        $id = yii::$app->user->getId();
+        var_dump($id);
         $model = new Address();
         $params = yii::$app->request->post();
         return $model->addre($params);
