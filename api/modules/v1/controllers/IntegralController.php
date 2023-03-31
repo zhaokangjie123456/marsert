@@ -116,4 +116,10 @@ class IntegralController extends BaseController
         $params = yii::$app->request->get();
         return $model->buzhidao();
     }
+    public function actionTail()
+    {
+        $model = New Integral();
+        $params = yii::$app->request->get();
+        return $model->tail();
+    }
 }
