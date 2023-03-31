@@ -107,4 +107,13 @@ class IntegralController extends BaseController
         $params = yii::$app->request->post();
         return $model->exchange($params);
     }
+    /**
+     * 七星兑换
+     * */
+    public function actionBuzhidao()
+    {
+        $model = New Integral();
+        $params = yii::$app->request->get();
+        return $model->buzhidao();
+    }
 }

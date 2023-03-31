@@ -132,6 +132,7 @@ $main = [
                         'GET'=>'show',//优惠券列表
                         'GET'=>'detail',//优惠券详情
                         'GET'=>'ni',//优惠券详情
+                        'GET'=>'buzhidao',//优惠券下关区的不知道怎么使用
                     ]
                 ],
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'v1/address',
