@@ -1520,17 +1520,15 @@ class Integral extends \yii\db\ActiveRecord
     public function buzhidao($params)
     {
         $openid = Wechat::openid($params);
+        $pageSize = !empty($params['size'])?$params['size']:10;
         $data = (new \yii\db\Query())->select('code,userid,state,end_time,price')
             ->from('coupon')
-            ->where('userid=:userid',['userid'=>$openid->id])
-            ->andWhere('code=:code',['code'=>$params['code']])
-            ->one();
-        if($data == false){
-            throw new ErrorException('无效的code');
+            ->where('userid=:userid',['userid'=>$openid->id]);
+        $pages = new Pagination(['totalCount'=>$data->count(),'pageSize'=>$pageSize]);
+        $model = $data->offset($pages->offset)->limit($pages->limit)->all();
+        if($model == false){
+            return '目前没有优惠券';
         }
-        if($data['state'] == 2){
-            throw new ErrorException('此优惠券已经使用过,目前无法查看');
-        }
-        return ['url'=>'https://admin.youjingxi.com.cn/code/'.$data['code'].'.'.'jpg'];
+        return ['items'=>$model,'pages'=>$pages];
     }
 }
