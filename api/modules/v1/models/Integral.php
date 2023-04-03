@@ -1533,4 +1533,23 @@ class Integral extends \yii\db\ActiveRecord
         }
         return ['url'=>'https://admin.youjingxi.com.cn/code/'.$data['code'].'.'.'jpg'];
     }
+    /**
+     * 还是测试
+     * */
+    public function tail($params)
+    {
+        $openid = Wechat::openid($params);
+        $data = (new \yii\db\Query())->select('code,userid,state,end_time,price')
+            ->from('coupon')
+            ->where('userid=:userid',['userid'=>$openid->id])
+            ->andWhere('code=:code',['code'=>$params['code']])
+            ->one();
+        if($data == false){
+            throw new ErrorException('无效的code');
+        }
+        if($data['state'] == 2){
+            throw new ErrorException('此优惠券已经使用过,目前无法查看');
+        }
+        return ['url'=>'https://admin.youjingxi.com.cn/code/'.$data['code'].'.'.'jpg'];
+    }
 }
