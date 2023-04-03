@@ -66,4 +66,13 @@ class AddressController extends BaseController
         $params = yii::$app->request->get();
         return $model->code($params);
     }
+    /**
+     * 添加
+     * */
+    public function actionRest()
+    {
+        $model = new Address();
+        $params = yii::$app->request->get();
+        return $model->rest($params);
+    }
 }

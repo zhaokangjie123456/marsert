@@ -146,6 +146,7 @@ $main = [
                         'GET'=>'show',//列表
                         'GET'=>'details',//详情
                         'GET'=>'code',//二维码列表
+                        'GET'=>'rest',//二维码列表
                     ]
                 ],
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'v1/order',

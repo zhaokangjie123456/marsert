@@ -236,4 +236,18 @@ class Address extends \yii\db\ActiveRecord
             ->one();
         return $model;
     }
+    /**
+     *rest
+     * */
+    public function rest()
+    {
+        $pagesize = !empty($params['size'])?$params['size']:10;
+        $model = (new \yii\db\Query())->select('a.id,a.goods_name,a.stock,a.image,a.details,a.dete,a.price,a.create_at,b.id as bid,b.url')
+            ->from('goods as a,oss as b')
+            ->where('a.image=b.id');
+        $pages = new Pagination(['totalCount'=>$model->count(),'pageSize'=>$pagesize]);
+        $data = $model->offset($pages->offset)->limit($pages->limit)->all();
+
+        return ['items'=>$data,'pages'=>$pages,];
+    }
 }
