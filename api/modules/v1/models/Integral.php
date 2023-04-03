@@ -1539,6 +1539,25 @@ class Integral extends \yii\db\ActiveRecord
     public function tail($params)
     {
         $openid = Wechat::openid($params);
+        $integral = (new \yii\db\Query())->select('a.id,a.userid,a.duihuan,a.card_id,b.id as bid,b.lerver')
+            ->from('number as a,card as b')
+            ->where('a.id=:id',['id'=>$params['nid']])
+            ->andWhere('a.card_id=b.id')
+            ->andWhere('b.lerver=5')
+            ->andWhere('a.userid=:userid',['userid'=>$openid->id])
+            ->one();
+        $date = date('Y-m-d H:i:s');
+        $sql = 'select a.id,a.price,a.end_time,b.openid,b.id as bid,b.url,b.activity_id,b.code
+                    from activity  a INNER JOIN code  b where a.id = 4 and a.id=b.activity_id and b.openid is null and a.end_time>:end_time';
+        $merchants = \Yii::$app->db1->createCommand($sql,[':end_time'=>$date])->queryAll();
+        $rest = $merchants[mt_rand(0, count($merchants) -1)];
+        if(empty($merchants)){
+            throw new ErrorException('没有对应的优惠券请联系商家');
+        }
+        if($integral['duihuan'] == 1){
+            throw new ErrorException('此卡卷已经兑换');
+        }
+        $openid = Wechat::openid($params);
         $data = (new \yii\db\Query())->select('code,userid,state,end_time,price')
             ->from('coupon')
             ->where('userid=:userid',['userid'=>$openid->id])
